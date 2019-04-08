@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ProyectoFinal.Models.Cargos>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+<div class="container animated pulse">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-secondary text-white text-center">
+                    <h5>Lista de Cargos</h5>
+                    <h6>@Html.ActionLink("Registrar Nuevo Cargo", "Create")</h6>
+                </div>
+                <div class="card-body text-center">
+                    <table class="table">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Cargo)
+                            </th>
+                            <th>
+                                <p>Opciones</p>
+                            </th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cargo)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Editar", "Edit", new { id = item.ID }, new { @class = "btn btn-primary" })
+                                    @Html.ActionLink("Detalles", "Details", new { id = item.ID }, new { @class = "btn btn-success" })
+                                    @Html.ActionLink("Borrar", "Delete", new { id = item.ID }, new { @class = "btn btn-danger" })
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  
+
+
