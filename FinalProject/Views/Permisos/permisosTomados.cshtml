@@ -1,0 +1,79 @@
+﻿@model IEnumerable<ProyectoFinal.Models.Permisos>
+
+@{
+    ViewBag.Title = "permisosTomados";
+}
+
+
+
+<br />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-secondary text-white text-center">
+                    <h5>Listado de Permisos por Empleado</h5>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm())
+                    {
+                    <label class="control-label">Seleccione un Empleado:</label>
+                        <div class="row">
+                            <div class="col-md-5">
+                              
+                                @Html.DropDownList("Empleado", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                            <div class="col-md-5">
+
+                                <input type="submit" value="Buscar" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    }
+                        <br />
+                    <table class="table">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Empleados.codigoEmpleado)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Desde)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Hasta)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Comentarios)
+                            </th>
+
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Empleados.codigoEmpleado)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Desde)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Hasta)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Comentarios)
+                                </td>
+
+                            </tr>
+                        }
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

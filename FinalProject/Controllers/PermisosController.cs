@@ -21,6 +21,15 @@ namespace FinalProject.Controllers
             return View(permiso.ToList());
         }
 
+        public ActionResult permisosTomados([Bind(Include = "Empleado")] Permisos permisos)
+        {
+            var permiso = db.permiso.Include(p => p.Empleados);
+            ViewBag.Empleado = new SelectList(db.empleado.Where(s => s.Estatus == true), "ID", "codigoEmpleado");
+
+            permiso = permiso.Where(s => s.Empleados.ID == permisos.Empleado);
+            return View(permiso.ToList());
+        }
+
         // GET: Permisos/Details/5
         public ActionResult Details(int? id)
         {
@@ -43,6 +52,7 @@ namespace FinalProject.Controllers
             return View();
         }
 
+      
         // POST: Permisos/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -57,7 +67,7 @@ namespace FinalProject.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Empleado = new SelectList(db.empleado, "ID", "codigoEmpleado", permisos.Empleado);
+            ViewBag.Empleado = new SelectList(db.empleado.Where(s => s.Estatus == true), "ID", "codigoEmpleado", permisos.Empleado);
             return View(permisos);
         }
 
