@@ -21,6 +21,26 @@ namespace FinalProject.Controllers
             return View(empleado.ToList());
         }
 
+        public ViewResult Activos(string searchString)
+        {  
+            var empleado = db.empleado.Include(e => e.Cargos).Include(e => e.Departamentos);
+            var employed = empleado.Where(s => s.Estatus == true );
+            if (!String.IsNullOrEmpty(searchString)) {
+
+                employed = empleado.Where(s => s.Estatus == true && 
+                (s.Nombre.Contains(searchString) || s.Departamentos.Nombre.Contains(searchString)));
+
+            }
+            return View(employed.ToList());
+        }
+
+        public ActionResult Inactivos()
+        {
+            var empleado = db.empleado.Include(e => e.Cargos).Include(e => e.Departamentos);
+            var employed = empleado.Where(s => s.Estatus == false);
+            return View(employed.ToList());
+        }
+
         // GET: Empleados/Details/5
         public ActionResult Details(int? id)
         {

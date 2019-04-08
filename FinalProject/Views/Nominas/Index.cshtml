@@ -4,40 +4,60 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<br />
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.mesAno.Year)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.mesAno.Month)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.montoTotal)
-        </th>
-        <th></th>
-    </tr>
+<div class="container animated pulse">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-secondary text-white text-center">
+                    <h3>Nominas</h3>
+                    <p>
+                        @Html.ActionLink("Calcular Nueva Nomina", "Create")
+                    </p>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.mesAno.Year)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.mesAno.Month)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.montoTotal)
+                            </th>
+                            <th></th>
+                        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.mesAno.Year)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.mesAno.Month)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.montoTotal)
-        </td>
-        <td>
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.mesAno.Year)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.mesAno.Month)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.montoTotal)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Borrar", "Delete", new { id = item.ID }, new { @class = "btn btn-danger" })
+                                </td>
+                            </tr>
+                        }
 
-</table>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  
+
