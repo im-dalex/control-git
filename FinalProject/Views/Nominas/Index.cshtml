@@ -19,7 +19,7 @@
                 </div>
                 <div class="card-body">
                     <table class="table">
-                        <tr>
+                        <tr class="text-center">
                             <th>
                                 @Html.DisplayNameFor(model => model.mesAno.Year)
                             </th>
@@ -29,12 +29,14 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.montoTotal)
                             </th>
-                            <th></th>
+                            <th>
+                                <p>Opciones</p>
+                            </th>
                         </tr>
 
                         @foreach (var item in Model)
                         {
-                            <tr>
+                            <tr class="text-center">
                                 <td>
                                     @Html.DisplayFor(modelItem => item.mesAno.Year)
                                 </td>
@@ -42,7 +44,7 @@
                                     @Html.DisplayFor(modelItem => item.mesAno.Month)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.montoTotal)
+                                    $@Html.DisplayFor(modelItem => item.montoTotal)
                                 </td>
                                 <td>
                                     @Html.ActionLink("Borrar", "Delete", new { id = item.ID }, new { @class = "btn btn-danger" })
