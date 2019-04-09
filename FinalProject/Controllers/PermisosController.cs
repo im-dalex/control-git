@@ -112,6 +112,7 @@ namespace FinalProject.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Permisos permisos = db.permiso.Find(id);
+
             if (permisos == null)
             {
                 return HttpNotFound();
