@@ -22,6 +22,16 @@ namespace FinalProject.Controllers
             return View(salida.ToList());
         }
 
+        public ActionResult SalidaMes(string searchString)
+        {
+            var lista = from a in db.salida
+                        select a;
+
+            lista = lista.Where(s => s.fechaSalida.Month.ToString().Contains(searchString));
+
+            return View(lista.Include(s => s.Empleados).ToList());
+        }
+
         // GET: Salidas/Details/5
         public ActionResult Details(int? id)
         {

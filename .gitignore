@@ -260,3 +260,5 @@ paket-files/
 __pycache__/
 *.pyc
 /FinalProject/Views/Empleados/EntradaMes.cshtml
+/FinalProject/Views/Nominas/Dato.cshtml
+/FinalProject/Views/Nominas/Busqueda.cshtml

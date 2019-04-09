@@ -12,7 +12,7 @@ namespace ProyectoFinal.Models
         [Required]
         [DataType(DataType.Date)]
         [Display(Name ="Año y Fecha")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MMM yyyy}")]
         public DateTime mesAno { get; set; }
         //[Required]
         //[DataType(DataType.Date)]

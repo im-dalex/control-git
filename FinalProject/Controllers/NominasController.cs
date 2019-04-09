@@ -13,12 +13,22 @@ namespace FinalProject.Controllers
     public class NominasController : Controller
     {
         private ProjectContext db = new ProjectContext();
-
+      
         // GET: Nominas
         public ActionResult Index()
         {
             return View(db.nomina.ToList());
         }
+        public ActionResult Busqueda(string fecha)
+        {
+            var lista = from a in db.nomina
+                         select a;
+            lista = lista.Where(s => s.mesAno.ToString().Contains(fecha) );
+            //nomina = nomina.Where(s => s.mesAno.Year.ToString().Contains(fecha.Year.ToString()));
+            return View(lista.ToList());
+        }
+
+
 
         // GET: Nominas/Details/5
         public ActionResult Details(int? id)

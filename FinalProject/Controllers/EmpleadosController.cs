@@ -41,18 +41,19 @@ namespace FinalProject.Controllers
             return View(employed.ToList());
         }
 
-        public ViewResult EntradaMes(/*[Bind(Include = "fechaIngreso")] Empleados empleados*/ /*DateTime */ string fechaIngreso)
+        public ViewResult EntradaMes(string searchString)
         {
 
-            var empleado = db.empleado.Include(e => e.Cargos).Include(e => e.Departamentos);
-            if (!String.IsNullOrEmpty(fechaIngreso))
-            {
-               
-                empleado = empleado.Where(s => s.fechaIngreso.Month.ToString().Contains(fechaIngreso) 
-                || s.fechaIngreso.Year.ToString().Contains(fechaIngreso));
-                
-            }
-            return View(empleado.ToList());
+            //var empleado = db.empleado.Include(e => e.Cargos).Include(e => e.Departamentos);
+
+
+            //    var employed = db.empleado.Where(s => s.fechaIngreso.ToString().Contains(fechaIngreso));
+            var lista = from a in db.empleado
+                        select a;
+
+            lista = lista.Where(s => s.fechaIngreso.Month.ToString().Contains(searchString));
+
+            return View(lista.ToList());
         }
 
         // GET: Empleados/Details/5
