@@ -41,6 +41,20 @@ namespace FinalProject.Controllers
             return View(employed.ToList());
         }
 
+        public ViewResult EntradaMes(/*[Bind(Include = "fechaIngreso")] Empleados empleados*/ /*DateTime */ string fechaIngreso)
+        {
+
+            var empleado = db.empleado.Include(e => e.Cargos).Include(e => e.Departamentos);
+            if (!String.IsNullOrEmpty(fechaIngreso))
+            {
+               
+                empleado = empleado.Where(s => s.fechaIngreso.Month.ToString().Contains(fechaIngreso) 
+                || s.fechaIngreso.Year.ToString().Contains(fechaIngreso));
+                
+            }
+            return View(empleado.ToList());
+        }
+
         // GET: Empleados/Details/5
         public ActionResult Details(int? id)
         {
@@ -93,6 +107,7 @@ namespace FinalProject.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Empleados empleados = db.empleado.Find(id);
+            
             if (empleados == null)
             {
                 return HttpNotFound();
@@ -111,6 +126,7 @@ namespace FinalProject.Controllers
         {
             if (ModelState.IsValid)
             {
+   
                 db.Entry(empleados).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
